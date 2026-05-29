@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
 
 from review_sentiment_app.predict import predict
 
@@ -15,6 +16,10 @@ app.add_middleware(
 )
 
 
-@app.get("/api/get-review-sentiment/{review}")
-def get_review_sentiment(review: str):
-    return predict(review)
+class ReviewRequest(BaseModel):
+    review: str
+
+
+@app.post("/api/get-review-sentiment")
+def get_review_sentiment(review_request: ReviewRequest):
+    return predict(review_request.review)

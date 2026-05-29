@@ -9,7 +9,13 @@ function App() {
     function onSubmit() {
         try {
             setLoading(true);
-            fetch(`http://localhost:8000/api/get-review-sentiment/${review}`)
+            fetch(`http://localhost:8000/api/get-review-sentiment`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ review }),
+            })
                 .then((res) => res.json())
                 .then((data) => {
                     console.log(data);
