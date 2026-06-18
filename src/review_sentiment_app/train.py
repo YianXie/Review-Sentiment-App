@@ -24,7 +24,7 @@ def main() -> None:
         X, y, test_size=0.2, random_state=0
     )
 
-    vectorizer = TfidfVectorizer(max_features=10000, ngram_range=(1, 2))
+    vectorizer = TfidfVectorizer(max_features=10000, ngram_range=(1, 1))
     X_train_tfidf = vectorizer.fit_transform(X_train)
 
     clf = MultinomialNB()
@@ -34,8 +34,8 @@ def main() -> None:
     y_pred = clf.predict(X_test_tfidf)
     print(classification_report(y_test, y_pred))
 
-    joblib.dump(vectorizer, "models/vectorizer_mf10000_ng2.joblib")
-    joblib.dump(clf, "models/clf_mf10000_ng2.joblib")
+    joblib.dump(vectorizer, "models/vectorizer.joblib")
+    joblib.dump(clf, "models/clf.joblib")
 
 
 if __name__ == "__main__":
