@@ -9,7 +9,7 @@ function App() {
     function onSubmit() {
         try {
             setLoading(true);
-            fetch(`http://localhost:8000/api/get-review-sentiment`, {
+            fetch(`${import.meta.env.VITE_API_URL}/api/get-review-sentiment`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
